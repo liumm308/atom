@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.common.dao.UserInfoDao" >
+  <resultMap id="BaseResultMap" type="com.library.common.bean.UserInfoBean" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="FILE_PACKAGE_PATH" property="projectId" jdbcType="VARCHAR" />
+    <result column="FILE_SYSTEM_PATH" property="fileSystemPath" jdbcType="VARCHAR" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="FILE_SIZE" property="fileSize" jdbcType="DECIMAL" />
+    <result column="FILE_TYPE" property="fileType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="UPLOAD_PERSON" property="uploadPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, FILE_PACKAGE_PATH, FILE_SYSTEM_PATH, FILE_NAME, FILE_SIZE, FILE_TYPE, STATUS, 
+    UPLOAD_PERSON, CREATE_TIME, UPDATE_TIME
+  </sql>
+
+
+  <insert id="insert" parameterType="com.library.common.bean.UserInfoBean" >
+    insert into cloud_file (ID, FILE_PACKAGE_PATH, FILE_SYSTEM_PATH, 
+      FILE_NAME, FILE_SIZE, FILE_TYPE, 
+      STATUS, UPLOAD_PERSON, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{projectId,jdbcType=VARCHAR}, #{fileSystemPath,jdbcType=VARCHAR},
+      #{fileName,jdbcType=VARCHAR}, #{fileSize,jdbcType=DECIMAL}, #{fileType,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{uploadPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertFile" parameterType="com.library.common.bean.UserInfoBean" >
+    insert into cloud_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectId != null" >
+        FILE_PACKAGE_PATH,
+      </if>
+      <if test="fileSystemPath != null" >
+        FILE_SYSTEM_PATH,
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME,
+      </if>
+      <if test="fileSize != null" >
+        FILE_SIZE,
+      </if>
+      <if test="fileType != null" >
+        FILE_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="uploadPerson != null" >
+        UPLOAD_PERSON,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSystemPath != null" >
+        #{fileSystemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadPerson != null" >
+        #{uploadPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateFile" parameterType="com.library.common.bean.UserInfoBean" >
+    update cloud_file
+    <set >
+      <if test="projectId != null" >
+        FILE_PACKAGE_PATH = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSystemPath != null" >
+        FILE_SYSTEM_PATH = #{fileSystemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="fileType != null" >
+        FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadPerson != null" >
+        UPLOAD_PERSON = #{uploadPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.library.common.bean.UserInfoBean" >
+    update cloud_file
+    set FILE_PACKAGE_PATH = #{projectId,jdbcType=VARCHAR},
+      FILE_SYSTEM_PATH = #{fileSystemPath,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      UPLOAD_PERSON = #{uploadPerson,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertCloudFile" parameterType="com.library.common.bean.UserInfoBean" >
+    insert into cloud_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="filePackagePath != null" >
+        FILE_PACKAGE_PATH,
+      </if>
+      <if test="fileSystemPath != null" >
+        FILE_SYSTEM_PATH,
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME,
+      </if>
+      <if test="fileSize != null" >
+        FILE_SIZE,
+      </if>
+      <if test="fileType != null" >
+        FILE_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="uploadPerson != null" >
+        UPLOAD_PERSON,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="filePackagePath != null" >
+        #{filePackagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSystemPath != null" >
+        #{fileSystemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=DOUBLE},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadPerson != null" >
+        #{uploadPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from cloud_file
+    where ID = #{id,jdbcType=BIGINT} and STATUS != 'deleted'
+  </select>
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from cloud_file
+    where ID in
+    <foreach collection="array" index="index" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+    and STATUS != 'deleted'
+  </select>
+
+  <update id="updateCloudFile" parameterType="com.library.common.bean.UserInfoBean" >
+    update cloud_file
+    <set >
+      <if test="filePackagePath != null" >
+        FILE_PACKAGE_PATH = #{filePackagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSystemPath != null" >
+        FILE_SYSTEM_PATH = #{fileSystemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        FILE_SIZE = #{fileSize,jdbcType=DOUBLE},
+      </if>
+      <if test="fileType != null" >
+        FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadPerson != null" >
+        UPLOAD_PERSON = #{uploadPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="validateUnique" resultMap="BaseResultMap" parameterType="com.library.common.bean.UserInfoBean" >
+    select
+    <include refid="Base_Column_List" />
+    from cloud_file
+    <where>
+      <if test="fileSystemPath != null">
+        and FILE_SYSTEM_PATH = #{fileSystemPath,jdbcType=VARCHAR}
+      </if>
+      and STATUS != 'deleted'
+    </where>
+  </select>
+
+</mapper>
